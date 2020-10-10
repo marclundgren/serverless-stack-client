@@ -1,26 +1,24 @@
+import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
-// import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import React, { useState } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-
-import { onError } from "../libs/errorLib";
 import LoaderButton from "../components/LoaderButton";
 import { useAppContext } from "../libs/contextLib";
+import { useFormFields } from "../libs/hooksLib";
+import { onError } from "../libs/errorLib";
 import "./Login.css";
 
 export default function Login() {
   const history = useHistory();
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
-  const [email, setEmail] = useState("admin2@example.com");
-  const [password, setPassword] = useState("Passw0rd!");
-
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [fields, handleFieldChange] = useFormFields({
+    email: "",
+    password: "",
+  });
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return fields.email.length > 0 && fields.password.length > 0;
   }
 
   async function handleSubmit(event) {
@@ -29,7 +27,7 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      await Auth.signIn(email, password);
+      await Auth.signIn(fields.email, fields.password);
       userHasAuthenticated(true);
       history.push("/");
     } catch (e) {
@@ -46,16 +44,16 @@ export default function Login() {
           <FormControl
             autoFocus
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={fields.email}
+            onChange={handleFieldChange}
           />
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
           <ControlLabel>Password</ControlLabel>
           <FormControl
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             type="password"
+            value={fields.password}
+            onChange={handleFieldChange}
           />
         </FormGroup>
         <LoaderButton
