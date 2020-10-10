@@ -1,9 +1,14 @@
 import { Auth } from "aws-amplify";
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+
+import { useAppContext } from "../libs/contextLib";
 import "./Login.css";
 
 export default function Login() {
+  const { userHasAuthenticated } = useAppContext();
+  // const [email, setEmail] = useState("admin2@example.com");
+  // const [password, setPassword] = useState("Passw0rd!");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,7 +21,7 @@ export default function Login() {
 
     try {
       await Auth.signIn(email, password);
-      alert("Logged in");
+      userHasAuthenticated(true);
     } catch (e) {
       alert(e.message);
     }
