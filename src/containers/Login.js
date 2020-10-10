@@ -7,10 +7,10 @@ import "./Login.css";
 
 export default function Login() {
   const { userHasAuthenticated } = useAppContext();
-  // const [email, setEmail] = useState("admin2@example.com");
-  // const [password, setPassword] = useState("Passw0rd!");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin2@example.com");
+  const [password, setPassword] = useState("Passw0rd!");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
