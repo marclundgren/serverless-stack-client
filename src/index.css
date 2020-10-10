@@ -23,11 +23,11 @@ input.form-control {
   font-size: 16px;
 }
 
-input[type=file] {
+input[type="file"] {
   width: 100%;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
