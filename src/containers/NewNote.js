@@ -2,10 +2,14 @@ import { API } from "aws-amplify";
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import LoaderButton from "../components/LoaderButton";
-import { onError } from "../libs/errorLib";
-import config from "../config";
+
 import "./NewNote.css";
+
+import LoaderButton from "../components/LoaderButton";
+import config from "../config";
+
+import { onError } from "../libs/errorLib";
+import { s3Upload } from "../libs/awsLib";
 
 export default function NewNote() {
   const file = useRef(null);
@@ -36,7 +40,9 @@ export default function NewNote() {
     setIsLoading(true);
 
     try {
-      await createNote({ content });
+      const attachment = file.current ? await s3Upload(file.current) : null;
+
+      await createNote({ content, attachment });
       history.push("/");
     } catch (e) {
       onError(e);
