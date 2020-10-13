@@ -2,7 +2,7 @@ const REGION = "us-east-2";
 
 const dev = {
   STRIPE_KEY:
-    "sk_test_51H9ITaEXmd8jZJxvHgjgQEsb5AvT1gSXHzsowu2BzopnbAAXyQSO8IDmBN2BphA2sD7xqq9wj8UQLmvFt3AhaTi6001jbfvzGD",
+    "pk_test_51H9ITaEXmd8jZJxvRmybR1YbUo18q9Tq2MvZcgV61ZGt42HSanSO0a6WnV823irZ1vcFSFgRMS0jaCcyoUVRspqI00t8WVnNnI",
   s3: {
     REGION,
     BUCKET: "dev-notes-infra-s3-uploads4f6eb0fd-p5yu8a0rrr9o",
@@ -21,7 +21,7 @@ const dev = {
 
 const prod = {
   STRIPE_KEY:
-    "sk_test_51H9ITaEXmd8jZJxvHgjgQEsb5AvT1gSXHzsowu2BzopnbAAXyQSO8IDmBN2BphA2sD7xqq9wj8UQLmvFt3AhaTi6001jbfvzGD",
+    "pk_test_51H9ITaEXmd8jZJxvRmybR1YbUo18q9Tq2MvZcgV61ZGt42HSanSO0a6WnV823irZ1vcFSFgRMS0jaCcyoUVRspqI00t8WVnNnI",
   s3: {
     REGION,
     BUCKET: "prod-notes-infra-s3-uploads4f6eb0fd-1i96zhqrl1wvu",

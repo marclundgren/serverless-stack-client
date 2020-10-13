@@ -9,3 +9,11 @@ export async function s3Upload(file) {
 
   return stored.key;
 }
+
+export function s3Remove(file) {
+  const filename = `${Date.now()}-${file.name}`;
+
+  return Storage.vault.remove(filename, file, {
+    contentType: file.type,
+  });
+}
